@@ -1,35 +1,27 @@
-package hello.jpatest.snack.entity;
+package hello.jpatest.book.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
-@NoArgsConstructor
 @Getter
-@Setter
+@NoArgsConstructor
 public class Review {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String content;
-    private int score;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "snack_id", nullable = false)
-    private Snack snack;
+    @JoinColumn(name = "book_id", nullable = false)
+    private Book book;
 
-    public Review(String content, int score, Snack snack) {
+    public Review(String content, Book book) {
         this.content = content;
-        this.score = score;
-        this.snack = snack;
+        this.book = book;
     }
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
     }
 }
